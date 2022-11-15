@@ -1,0 +1,101 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace baitaptuan3
+{
+    public static class MyExtensions
+    {
+        public static string ConvertToString(this Customer customer)
+        {
+            string customertype = Enum.GetName(typeof(CustomerType), customer.customer1);
+            if (customer.CustomerID1 != "C000")
+            {
+                return String.Format("ID: {0} Name: {1} Address: {2}Phone: {3} Type: {4} ", customer.CustomerID1, customer.CustomerName1, customer.CustomerAddress1, customer.CustomerPhone1, customertype);
+
+            }
+            else
+            {
+                return " ";
+
+            }
+          
+        }
+    }
+    public enum CustomerType {loyal, potential, needAtention,theOtherClient};
+     public class Customer
+    {
+        private string CustomerID="C000";
+        private string CustomerName="A";
+        private string CustomerAddress="A";
+        private string CustomerPhone="0";
+        private CustomerType customer = CustomerType.loyal;
+        public Customer() { }
+        public Customer(string CustomerID, string CustomerName , string CustomerAddress, string CustomerPhone, CustomerType customertype)
+        {
+            this.CustomerID = CustomerID;
+            this.CustomerName = CustomerName;
+            this.CustomerAddress = CustomerAddress;
+            this.CustomerPhone = CustomerPhone;
+            this.customer = customertype;
+        }
+
+        public string CustomerID1 { get => CustomerID; set => CustomerID = value; }
+        public string CustomerName1 { get => CustomerName; set => CustomerName = value; }
+        public string CustomerAddress1 { get => CustomerAddress; set => CustomerAddress = value; }
+        public string CustomerPhone1 { get => CustomerPhone; set => CustomerPhone = value; }
+        public CustomerType customer1 { get => customer; set => customer = value; }
+        
+        public void CustomerInfo() // can sua lai
+        {
+            string customertypeName = Enum.GetName(typeof(CustomerType), customer);
+            Console.WriteLine("ID: {0} Name: {1} Address: {2}Phone: {3} Type: {4} ", CustomerID, CustomerName, CustomerAddress, CustomerPhone, customertypeName);
+
+        }
+        
+    }
+    class Company
+    {
+        private String CompanyName;
+        public List<Customer> ListOfCustomers;
+
+        public Company()
+        {
+            CompanyName = "Not Assigned";
+            ListOfCustomers = new List<Customer>();
+        }
+        public string CompanyName1 { get => CompanyName; set => CompanyName = value; }
+        public void CompanyInfo()
+        {
+            Console.WriteLine("Name company {0} and number customers of company {1} ", CompanyName, ListOfCustomers.Count);
+            foreach(Customer c in ListOfCustomers)
+            {
+                c.CustomerInfo();
+            }
+        }
+        public Customer SearchCustomer<T>(T search)
+        {
+            Customer c = new Customer();
+            if(typeof(T) == typeof(string))
+            {
+                c = ListOfCustomers.FirstOrDefault(o => o.CustomerName1 == search.ToString());
+                if (c != null)
+                {
+                    return c;
+                }
+                else if(typeof(T)== typeof(int))
+                {
+                    if (Convert.ToInt32(search) < ListOfCustomers.Count)
+                        return ListOfCustomers[Convert.ToInt32(search)];
+                }
+            }
+            Console.WriteLine("Customer is not found");
+
+            return new Customer();
+        }
+
+    }
+}
