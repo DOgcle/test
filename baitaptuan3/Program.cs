@@ -59,21 +59,34 @@ namespace baitaptuan3
     }
     class Company
     {
-        private String CompanyName;
+        public delegate void CompanyHandler(Company company);
+        public event CompanyHandler CompanyAddorRemoveEvent;
+        int NumberOfCustomer;
+        private string CompanyName;
         public List<Customer> ListOfCustomers;
+        Dictionary<CustomerType, string> customertypeinfo = new Dictionary<CustomerType, string>();
 
         public Company()
         {
             CompanyName = "Not Assigned";
             ListOfCustomers = new List<Customer>();
+            customertypeinfo.Add(CustomerType.loyal, "Khach hang thuong xuyen mua");
+            customertypeinfo.Add(CustomerType.needAtention, "Khach hang can quan tam nhieu hon");
+            customertypeinfo.Add(CustomerType.potential, "Khach hang co the co nhu cau mua san pham cua cong ty");
+            customertypeinfo.Add(CustomerType.theOtherClient, "nhung khach hang khong thuoc loai tren");
+
         }
         public string CompanyName1 { get => CompanyName; set => CompanyName = value; }
+        public int NumberOfCustomer1 { get => NumberOfCustomer; set => NumberOfCustomer = value; }
+
         public void CompanyInfo()
         {
             Console.WriteLine("Name company {0} and number customers of company {1} ", CompanyName, ListOfCustomers.Count);
             foreach(Customer c in ListOfCustomers)
             {
+                KeyValuePair<CustomerType, string> info = customertypeinfo.FirstOrDefault(o => o.Key == c.customer1);
                 c.CustomerInfo();
+                Console.WriteLine("---Thong tin tung loai khach hang: {0}\n", info.Value);
             }
         }
         public Customer SearchCustomer<T>(T search)
@@ -95,6 +108,22 @@ namespace baitaptuan3
             Console.WriteLine("Customer is not found");
 
             return new Customer();
+        }
+        public void AddCustomer(Customer customer)
+        {
+            ListOfCustomers.Add(customer);
+
+        }
+        public void RemoveCustomer(Customer customer)
+        {
+            ListOfCustomers.Add(customer);
+        }
+        public void OnCustomerChanger(Company company)
+        {
+            if(CompanyAddorRemoveEvent!= null)
+            {
+                CompanyAddorRemoveEvent(this);
+            }
         }
 
     }
