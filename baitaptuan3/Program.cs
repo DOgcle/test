@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using baitaptuan3;
 
 
 namespace baitaptuan3
@@ -126,5 +127,27 @@ namespace baitaptuan3
             }
         }
 
+    }
+  
+}
+namespace main
+{
+    class Program
+    {
+        static void UpdateListOfCustomer(Company company)
+        {
+            company.CompanyName1 = company.ListOfCustomers.Count;
+        }
+
+        static void Main(string[] args)
+        {
+            Company company = new Company();
+            company.CompanyName1 = "ABC";
+            company.CompanyAddorRemoveEvent += new Company.CompanyHandler(UpdateListOfCustomer);
+
+
+
+            Console.ReadKey();
+        }
     }
 }
