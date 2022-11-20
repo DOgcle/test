@@ -50,10 +50,13 @@ namespace baitaptuan3
         public string CustomerPhone1 { get => CustomerPhone; set => CustomerPhone = value; }
         public CustomerType customer1 { get => customer; set => customer = value; }
         
-        public void CustomerInfo() // can sua lai
+        public void CustomerInfo() 
         {
-            string customertypeName = Enum.GetName(typeof(CustomerType), customer);
-            Console.WriteLine("ID: {0} Name: {1} Address: {2}Phone: {3} Type: {4} ", CustomerID, CustomerName, CustomerAddress, CustomerPhone, customertypeName);
+            if(CustomerID != "C000")
+            {
+                string customertypeName = Enum.GetName(typeof(CustomerType), customer);
+                Console.WriteLine("ID: {0} Name: {1} Address: {2}Phone: {3} Type: {4} ", CustomerID, CustomerName, CustomerAddress, CustomerPhone, customertypeName);
+            }
 
         }
         
@@ -89,6 +92,7 @@ namespace baitaptuan3
                 c.CustomerInfo();
                 Console.WriteLine("---Thong tin tung loai khach hang: {0}\n", info.Value);
             }
+           
         }
         public Customer SearchCustomer<T>(T search)
         {
@@ -136,15 +140,26 @@ namespace main
     {
         static void UpdateListOfCustomer(Company company)
         {
-            company.CompanyName1 = company.ListOfCustomers.Count;
+            company.NumberOfCustomer1 = company.ListOfCustomers.Count;
         }
 
         static void Main(string[] args)
         {
+
             Company company = new Company();
             company.CompanyName1 = "ABC";
             company.CompanyAddorRemoveEvent += new Company.CompanyHandler(UpdateListOfCustomer);
 
+            company.AddCustomer(new Customer("001", "Tai", "HCM", "0646545",CustomerType.loyal));
+            company.AddCustomer(new Customer("002", "Tan", "HCM", "014545", CustomerType.needAtention));
+            company.AddCustomer(new Customer("003", "Ta", "DaNang", "098741", CustomerType.potential));
+            company.AddCustomer(new Customer("004", "Ti", "HN", "0466235", CustomerType.theOtherClient));
+
+            Customer customer = company.SearchCustomer("001");
+            company.RemoveCustomer(customer);
+
+            company.CompanyInfo();
+         
 
 
             Console.ReadKey();
