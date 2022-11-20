@@ -99,7 +99,7 @@ namespace baitaptuan3
             Customer c = new Customer();
             if(typeof(T) == typeof(string))
             {
-                c = ListOfCustomers.FirstOrDefault(o => o.CustomerName1 == search.ToString());
+                c = ListOfCustomers.FirstOrDefault(o => o.CustomerID1 == search.ToString());
                 if (c != null)
                 {
                     return c;
@@ -150,11 +150,12 @@ namespace main
             company.CompanyName1 = "ABC";
             company.CompanyAddorRemoveEvent += new Company.CompanyHandler(UpdateListOfCustomer);
 
-            company.AddCustomer(new Customer("001", "Tai", "HCM", "0646545",CustomerType.loyal));
-            company.AddCustomer(new Customer("002", "Tan", "HCM", "014545", CustomerType.needAtention));
-            company.AddCustomer(new Customer("003", "Ta", "DaNang", "098741", CustomerType.potential));
-            company.AddCustomer(new Customer("004", "Ti", "HN", "0466235", CustomerType.theOtherClient));
+            company.AddCustomer(new Customer("001", "Nam", "HCM", "0646545",CustomerType.loyal));
+            company.AddCustomer(new Customer("002", "Nhung", "HCM", "014545", CustomerType.needAtention));
+            company.AddCustomer(new Customer("003", "Linh", "DaNang", "098741", CustomerType.potential));
+            company.AddCustomer(new Customer("004", "Phuoc", "HN", "0466235", CustomerType.theOtherClient));
 
+            company.SearchCustomer("002").CustomerInfo();
             Customer customer = company.SearchCustomer("001");
             company.RemoveCustomer(customer);
 
