@@ -55,7 +55,7 @@ namespace baitaptuan3
             if(CustomerID != "C000")
             {
                 string customertypeName = Enum.GetName(typeof(CustomerType), customer);
-                Console.WriteLine("ID: {0} Name: {1} Address: {2}Phone: {3} Type: {4} ", CustomerID, CustomerName, CustomerAddress, CustomerPhone, customertypeName);
+                Console.WriteLine("ID: {0} Name: {1} Address: {2} Phone: {3} Type: {4} ", CustomerID, CustomerName, CustomerAddress, CustomerPhone, customertypeName);
             }
 
         }
