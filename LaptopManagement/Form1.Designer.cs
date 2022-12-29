@@ -71,6 +71,8 @@ namespace LaptopManagement
             this.dgwLatoplist.Size = new System.Drawing.Size(844, 283);
             this.dgwLatoplist.TabIndex = 0;
             this.dgwLatoplist.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwLatoplist_CellContentClick);
+            this.dgwLatoplist.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwLatoplist_CellMouseClick);
+            this.dgwLatoplist.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgwLatoplist_EditingControlShowing);
             // 
             // LaptopID
             // 
@@ -142,7 +144,7 @@ namespace LaptopManagement
             this.picLaptopImage.Location = new System.Drawing.Point(935, 87);
             this.picLaptopImage.Name = "picLaptopImage";
             this.picLaptopImage.Size = new System.Drawing.Size(236, 236);
-            this.picLaptopImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picLaptopImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLaptopImage.TabIndex = 1;
             this.picLaptopImage.TabStop = false;
             this.picLaptopImage.Click += new System.EventHandler(this.picLaptopImage_Click);
@@ -167,6 +169,7 @@ namespace LaptopManagement
             this.btnLoadSQL.TabIndex = 3;
             this.btnLoadSQL.Text = "Load Data From SQL";
             this.btnLoadSQL.UseVisualStyleBackColor = true;
+            this.btnLoadSQL.Click += new System.EventHandler(this.btnLoadSQL_Click);
             // 
             // btnAdd
             // 
@@ -187,6 +190,7 @@ namespace LaptopManagement
             this.btnUpdate.TabIndex = 5;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -197,6 +201,7 @@ namespace LaptopManagement
             this.btnDelete.TabIndex = 6;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdateSource
             // 
@@ -207,6 +212,7 @@ namespace LaptopManagement
             this.btnUpdateSource.TabIndex = 7;
             this.btnUpdateSource.Text = "Update To Data Source";
             this.btnUpdateSource.UseVisualStyleBackColor = true;
+            this.btnUpdateSource.Click += new System.EventHandler(this.btnUpdateSource_Click);
             // 
             // LaptopManagemet
             // 
