@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Coffee" Class="CoffeeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-2N2MT0S0\SQLEXPRESS;Initial Catalog=Coffee;Integrated Security=True" SettingsObjectName="Coffee.Properties.Settings" SettingsPropertyName="CoffeeConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Coffee$" Member="Coffee_s">
+    <Type Name="Coffee_">
+      <Column Name="CofffeeID" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CoffeeName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OutOfDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
